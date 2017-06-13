@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jonluca/BulkReddit#readme",
   "dependencies": {
-    "reddit.js": "^0.1.4"
+    "reddit.js": "^0.1.4",
+    "snoowrap": "^1.14.0"
   }
 }
