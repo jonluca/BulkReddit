@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jonluca/BulkReddit/issues"
   },
-  "homepage": "https://github.com/jonluca/BulkReddit#readme"
+  "homepage": "https://github.com/jonluca/BulkReddit#readme",
+  "dependencies": {
+    "reddit.js": "^0.1.4"
+  }
 }
