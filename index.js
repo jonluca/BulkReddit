@@ -22,6 +22,7 @@ app.get(prefix + "/", function(req, res) {
     res.render("index.ejs");
 });
 
+
 app.get(prefix + "/download", function(req, res) {
     r.getSubreddit("talesfromtechsupport").getHot().then(function(data) {
         pbcopy(data);
