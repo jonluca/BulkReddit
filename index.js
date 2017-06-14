@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var request = require('request');
+var api_wrapper = require('./utils/wrapper.js');
 
 const prefix = "/BulkReddit";
 app.use(prefix + '/', express.static(path.join(__dirname, 'public')));
@@ -14,7 +15,7 @@ const r = new snoowrap({
     clientSecret: config.secret.secret,
     refreshToken: config.secret.refresh
 });
-
+api_wrapper(app);
 //Force refresh API sooner than 5 minutes
 app.get(prefix + "/", function(req, res) {
     res.status(200);
