@@ -45,6 +45,7 @@ body {
 	background-color: #FFEA54 !important;
 	text-align: center;
 	color: #29a7ec !important;
+	cursor: pointer;
 }
 .info-label {
 	color: #FFEA54;

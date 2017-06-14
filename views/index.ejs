@@ -19,6 +19,7 @@
 		</style>
 		<link rel="stylesheet" href="css/bulma.css">
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/animate.css">
 	</head>
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -37,7 +38,7 @@
 				</span>
 			</p>
 			<div class="field-body dropdown">
-				<div class="field">
+				<div class="field" id="type">
 					<label class="label info-label">Filter</label>
 					<p class="control">
 						<span class="select">
@@ -50,7 +51,7 @@
 						</span>
 					</p>
 				</div>
-				<div class="field">
+				<div class="field" id="time">
 					<label class="label info-label">Time</label>
 					<p class="control">
 						<span class="select">
@@ -68,17 +69,17 @@
 				<div class="field">
 					<label class="label info-label"># of Posts</label>
 					<p class="control">
-						<input class="input" type="text" placeholder="1 - 100">
+						<input class="input" id="num" type="text" placeholder="1 - 100">
 					</p>
 				</div>
 			</div>
 		</div>
 		<div id="options" class="columns">
 			<div class="column">
-				<p class="notification is-primary pane">Text</p>
+				<p class="notification is-primary pane animated" id="txt">Text</p>
 			</div>
 			<div class="column">
-				<p class="notification is-primary pane">PDF</p>
+				<p class="notification is-primary pane animated" id="pdf">PDF</p>
 			</div>
 		</div>
 	</div>
