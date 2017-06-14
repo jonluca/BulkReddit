@@ -5,9 +5,9 @@ html {
 }
 body {
 	font-family: 'Raleway', sans-serif;
-	background: #EB3349;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #56CCF2;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #28A7EC, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #28A7EC, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	position: relative;
 	min-height: 100%;
 	flex: 1;
@@ -15,12 +15,8 @@ body {
 #title {
 	color: white;
 	font-size: 200%;
-}
-a {
-	color: #FFCC00;
-}
-a:hover {
-	color: #FFCC00;
+	padding-bottom: 5%;
+	padding-top: 5%;
 }
 .modal-content {
 	display: none;
@@ -39,7 +35,17 @@ a:hover {
 #input {
 	width: 50%;
 	margin: 0 auto;
+	padding-bottom: 5%;
 }
 .text-center {
 	text-align: center;
+}
+.pane {
+	background-color: #FFEA54 !important;
+	text-align: center
+}
+
+.info-label{
+	color: #FFEA54;
+	display: inline;
 }
