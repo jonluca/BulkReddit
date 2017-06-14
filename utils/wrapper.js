@@ -1,6 +1,7 @@
 var helmet = require('helmet');
 var bodyParser = require("body-parser");
 var fs = require('fs');
+var path = require('path');
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
     flags: 'a'
 });
@@ -8,7 +9,6 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
 var morgan = require('morgan');
 
 module.exports = function(app) {
-    app.use(limiter);
     app.use(helmet());
     //Apache-like logs
     app.set('trust proxy', true);
