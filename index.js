@@ -16,16 +16,17 @@ const r = new snoowrap({
     refreshToken: config.secret.refresh
 });
 api_wrapper(app);
-//Force refresh API sooner than 5 minutes
+
 app.get(prefix + "/", function(req, res) {
     res.status(200);
     res.render("index.ejs");
+});
+
+app.get(prefix + "/download", function(req, res) {
     r.getSubreddit("talesfromtechsupport").getHot().then(function(data) {
         pbcopy(data);
     });
-});
-
-//Function to copy to clipboard - mac
+}); //Function to copy to clipboard - mac
 function pbcopy(data) {
     var proc = require('child_process').spawn('pbcopy');
     proc.stdin.write(JSON.stringify(data)); proc.stdin.end();

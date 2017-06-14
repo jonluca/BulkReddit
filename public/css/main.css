@@ -12,8 +12,9 @@ body {
 	min-height: 100%;
 	flex: 1;
 }
-#info {
+#title {
 	color: white;
+	font-size: 200%;
 }
 a {
 	color: #FFCC00;
@@ -30,4 +31,15 @@ a:hover {
 	bottom: 0;
 	width: 100%;
 	height: 20px;
+}
+#options {
+	width: 90%;
+	margin: 0 auto;
+}
+#input {
+	width: 50%;
+	margin: 0 auto;
+}
+.text-center {
+	text-align: center;
 }
