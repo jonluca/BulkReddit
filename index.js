@@ -1,5 +1,9 @@
 const snoowrap = require('snoowrap');
 var config = require('./config.js');
+var express = require('express');
+var app = express();
+var path = require('path');
+var request = require('request');
 
 // NOTE: The following examples illustrate how to use snoowrap. However, hardcoding
 // credentials directly into your source code is generally a bad idea in practice (especially
