@@ -29,7 +29,7 @@ body {
 	height: 20px;
 }
 #options {
-	width: 90%;
+	width: 40%;
 	margin: 0 auto;
 }
 #input {
@@ -42,10 +42,65 @@ body {
 }
 .pane {
 	background-color: #FFEA54 !important;
-	text-align: center
+	text-align: center; 
+	color: #29a7ec !important;
 }
 
 .info-label{
 	color: #FFEA54;
 	display: inline;
+}
+
+.dropdown{
+	padding-top: 5%;
+}
+
+/*About sidenav*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: #004484;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    text-decoration: none;
+    color: #8cb9e6;
+    transition: 0.3s;
+}
+
+.sidenav p{
+	margin: 15px;
+	color: white;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.i {
+	display: inline;
+	float: left;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.footerp {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
 }

@@ -20,6 +20,12 @@
 		<link rel="stylesheet" href="css/bulma.css">
 		<link rel="stylesheet" href="css/main.css">
 	</head>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<div>
+			<p>Built by JonLuca DeCaro. Free and open source, on <a href="https://github.com/jonluca/BulkReddit">GitHub</a></p>
+		</div>
+	</div>
 	<div class="container">
 		<h1 class="text-center" id="title">Reddit Offline Cache</h1>
 		<div id="input" class="field">
@@ -30,24 +36,55 @@
 					<i class="fa fa-check"></i>
 				</span>
 			</p>
+			<div class="field-body dropdown">
+				<div class="field">
+					<label class="label info-label">Filter</label>
+					<p class="control">
+						<span class="select">
+							<select>
+								<option>Hot</option>
+								<option>New</option>
+								<option>Top</option>
+								<option>Controversial</option>
+							</select>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<label class="label info-label">Time</label>
+					<p class="control">
+						<span class="select">
+							<select>
+								<option>Hour</option>
+								<option>Day</option>
+								<option>Week</option>
+								<option>Month</option>
+								<option>Year</option>
+								<option>All</option>
+							</select>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<label class="label info-label"># of Posts</label>
+					<p class="control">
+						<input class="input" type="text" placeholder="1 - 100">
+					</p>
+				</div>
+			</div>
 		</div>
 		<div id="options" class="columns">
 			<div class="column">
-				<p class="notification is-primary pane">Test</p>
+				<p class="notification is-primary pane">Text</p>
 			</div>
 			<div class="column">
-				<p class="notification is-primary pane">Test</p>
-			</div>
-			<div class="column">
-				<p class="notification is-primary pane">Test</p>
-			</div>
-			<div class="column">
-				<p class="notification is-primary pane">Test</p>
+				<p class="notification is-primary pane">PDF</p>
 			</div>
 		</div>
 	</div>
 	<footer class="text-center" id="footer">
-		<p>&copy; 2017 JonLuca De Caro</p>
+		<h6 class="fa fa-info i" title="About" onclick="openNav()"></h6>
+		<p class="footerp">&copy; 2017 JonLuca De Caro</p>
 	</footer>
 </body>
 </html>

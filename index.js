@@ -20,9 +20,6 @@ api_wrapper(app);
 app.get(prefix + "/", function(req, res) {
     res.status(200);
     res.render("index.ejs");
-    r.getSubreddit('asdlfjasldjf').getHot().then(function(data) {
-        console.log(data);
-    });
 });
 
 app.get(prefix + "/download", function(req, res) {
