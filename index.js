@@ -7,7 +7,7 @@ var request = require('request');
 var api_wrapper = require('./utils/wrapper.js');
 var fs = require('fs');
 var PDFDocument = require('pdfkit');
-
+var blobstream = require('blob-stream');
 
 const prefix = "/BulkReddit";
 app.use(prefix + '/', express.static(path.join(__dirname, 'public')));
@@ -111,6 +111,32 @@ function parseData(data, filetype, numberOfPosts, res) {
         res.end();
     } else {
         var doc = new PDFDocument();
+        doc.pipe(fs.createWriteStream("data/" + n + "-" + numberOfPosts + ".pdf"));
+
+        doc.fontSize(25)
+            .text('Reddit offline cache', 100, 80).moveDown();
+        if (data.length == 0) {
+            doc.fontSize(25)
+                .text('Invalid subreddit or no posts to be found!', 100, 80);
+        }
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].is_self && data[i].distinguished == undefined) {
+                doc.fontSize(25)
+                    .text(data[i].title + " - " + "/u/" + String(data[i].author.name) + "\n", 100, 80).moveDown();
+                doc.font('Times-Roman', 13).text("https://reddit.com" + data[i].permalink + "\n").moveDown();
+                doc.font('Times-Roman', 13).text("----------------------------------------\n\n").moveDown();
+                doc.font('Times-Roman', 10).text(data[i].selftext + "\n").moveDown();
+                doc.font('Times-Roman', 13).text("\n\n\n").moveDown();
+                doc.addPage();
+            }
+
+        }
+        doc.end();
+        res.send({
+            url: "data/" + n + "-" + numberOfPosts + ".pdf"
+        });
+        res.status(200);
+        res.end();
     }
     pbcopy(data[3]);
 }
