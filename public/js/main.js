@@ -45,6 +45,8 @@ $(document).ready(function() {
 
 
 function download(fileType) {
+    $("#loading").css('display', 'block');
+    $("#options").css('display', 'none');
     let subreddit = $("#subreddit").val();
     let time = $('#time').find(":selected").text();
     let type = $('#type').find(":selected").text();
@@ -85,5 +87,7 @@ function download(fileType) {
 function processFile(data, code, jqXHR) {
     setTimeout(function() {
         location.pathname = "/BulkReddit/" + data.url;
-    }, 3000);
+        $("#loading").css('display', 'none');
+        $("#options").css('display', 'block');
+    }, 2000);
 }
