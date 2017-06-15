@@ -6,6 +6,8 @@ var path = require('path');
 var request = require('request');
 var api_wrapper = require('./utils/wrapper.js');
 var fs = require('fs');
+var PDFDocument = require('pdfkit');
+
 
 const prefix = "/BulkReddit";
 app.use(prefix + '/', express.static(path.join(__dirname, 'public')));
@@ -107,6 +109,8 @@ function parseData(data, filetype, numberOfPosts, res) {
         });
         res.status(200);
         res.end();
+    } else {
+        var doc = new PDFDocument();
     }
     console.log("got to data");
     pbcopy(data[3]);
