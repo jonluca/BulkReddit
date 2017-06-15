@@ -20,32 +20,65 @@ $.fn.extend({
 });
 
 $(document).ready(function() {
+    $("#type").change(function() {
+        let type = $('#type').find(":selected").text();
+        if (type != "Top" || type != "Controversial") {
+            $('#time').find("select").prop('disabled', true);
+            $("#time").css("display", "none");
+        } else {
+            $('#time').find("select").removeAttr("disabled");
+            $("#time").css("display", "block");
+        }
+
+    });
     $('#txt').click(function() {
-        getTxt();
+        $('#txt').animateCss('pulse');
+        download("txt");
     });
 
     $('#pdf').click(function() {
-        getPdf();
+        $('#pdf').animateCss('pulse');
+        download("pdf");
     });
 });
 
-function getTxt() {
-    $('#txt').animateCss('pulse');
+
+
+function download(fileType) {
+    let subreddit = $("#subreddit").val();
+    let time = $('#time').find(":selected").text();
+    let type = $('#type').find(":selected").text();
+    let numberOfPosts = $("#num").val();
+    var numericVal = parseInt(numberOfPosts);
+
+    if (numericVal > 100 || isNaN(numericVal)) {
+        $("#num").val("100");
+        numericVal = 100;
+    }
+    if (numericVal < 1) {
+        $("#num").val("1");
+        numericVal = 1;
+    }
     $.ajax({
-        method: 'POST',
+        method: 'GET',
         url: "/BulkReddit/download",
         type: 'json',
         data: {
-            checked: checkArray
+            subreddit: subreddit,
+            time: time,
+            type: type,
+            numberOfPosts: numberOfPosts,
+            file: fileType
         },
-        success: showNewImage,
+        success: processFile,
         error: function(data, code, jqXHR) {
-            $(".loader").css("display", "none");
-            $("#info").text("Error! Please try again.");
+            //some kind of error
         }
     });
+
+
 }
 
-function getPdf() {
-    $('#pdf').animateCss('pulse');
+function processFile(data, code, jqXHR) {
+    console.log(data);
 }

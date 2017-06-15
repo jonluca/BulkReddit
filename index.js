@@ -24,11 +24,54 @@ app.get(prefix + "/", function(req, res) {
 
 
 app.get(prefix + "/download", function(req, res) {
-    r.getSubreddit("talesfromtechsupport").getHot().then(function(data) {
-        pbcopy(data);
-    });
+    let time = req.body.time;
+    var lowerTime = time.toLowerCase();
+    let type = req.body.type;
+    let numberOfPosts = req.body.numberOfPosts;
+    let file = req.body.file;
+    let subreddit = req.body.subreddit;
+
+    //Validity check for time
+    if (!validTime(lowerTime)) {
+        lowerTime = "all";
+    }
+
+    switch (type) {
+        case "Hot":
+            r.getSubreddit(subreddit).getHot().then(parseData);
+            break;
+        case "Top":
+            r.getSubreddit(subreddit).getTop({
+                time: lowerTime
+            }).then(parseData);
+            break;
+        case "New":
+            r.getSubreddit(subreddit).getNew().then(parseData);
+            break;
+        case "Controversial":
+            r.getSubreddit(subreddit).getControversial({
+                time: lowerTime
+            }).then(parseData);
+            break;
+        default:
+            //If for some reason it does not match, default to top of all time
+            r.getSubreddit(subreddit).getTop({
+                time: 'all'
+            }).then(parseData);
+    }
+
+    res.status(200);
+    res.end();
 }); //Function to copy to clipboard - mac
 function pbcopy(data) {
     var proc = require('child_process').spawn('pbcopy');
     proc.stdin.write(JSON.stringify(data)); proc.stdin.end();
+}
+
+function validTime(time) {
+    return (["hour", "day", "week", "month", "year", "all"]).includes(time);
+}
+
+function parseData(data) {
+    pbcopy(data);
 }
