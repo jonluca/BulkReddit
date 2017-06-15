@@ -127,7 +127,7 @@ function parseData(data, filetype, numberOfPosts, res) {
                 .text('Invalid subreddit or no posts to be found!', 100, 80);
         }
         for (var i = 0; i < data.length; i++) {
-            if (data[i].is_self && data[i].distinguished == undefined) {
+            if (data[i].is_self && data[i].distinguished == undefined && !data[i].stickied) {
                 doc.fontSize(25)
                     .text(data[i].title + " - " + "/u/" + String(data[i].author.name) + "\n", 100, 80).moveDown();
                 doc.font('Times-Roman', 13).text("https://reddit.com" + data[i].permalink + "\n").moveDown();
