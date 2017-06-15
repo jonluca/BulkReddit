@@ -73,8 +73,7 @@ app.post(prefix + "/download", function(req, res) {
 });
 
 app.get(prefix + "/data/*", function(req, res) {
-    res.status(200);
-    res.render("index.ejs");
+    res.download("data/" + req.params[0]); // Set disposition and send it.
 });
 //Function to copy to clipboard - mac
 function pbcopy(data) {
