@@ -90,6 +90,7 @@ function validTime(time) {
 function parseData(data, filetype, numberOfPosts, res) {
     let d = new Date();
     let n = d.getTime();
+    var numAdded = 0;
     if (filetype == "txt") {
         var stream = fs.createWriteStream("data/" + n + "-" + numberOfPosts + ".txt");
         if (data.length == 0) {
@@ -102,6 +103,10 @@ function parseData(data, filetype, numberOfPosts, res) {
                 stream.write("----------------------------------------\n\n");
                 stream.write(data[i].selftext + "\n");
                 stream.write("\n\n\n");
+                ++numAdded;
+                if (numAdded >= numberOfPosts) {
+                    break;
+                }
             }
         }
         res.send({
@@ -115,6 +120,8 @@ function parseData(data, filetype, numberOfPosts, res) {
 
         doc.fontSize(25)
             .text('Reddit offline cache', 100, 80).moveDown();
+
+        doc.addPage();
         if (data.length == 0) {
             doc.fontSize(25)
                 .text('Invalid subreddit or no posts to be found!', 100, 80);
@@ -128,6 +135,10 @@ function parseData(data, filetype, numberOfPosts, res) {
                 doc.font('Times-Roman', 10).text(data[i].selftext + "\n").moveDown();
                 doc.font('Times-Roman', 13).text("\n\n\n").moveDown();
                 doc.addPage();
+                ++numAdded;
+                if (numAdded >= numberOfPosts) {
+                    break;
+                }
             }
 
         }

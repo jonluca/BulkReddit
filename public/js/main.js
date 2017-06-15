@@ -83,6 +83,12 @@ function download(fileType) {
 }
 
 function processFile(data, code, jqXHR) {
-    location.pathname = "/BulkReddit/" + data.url;
+    if (data.url.endsWith('pdf')) {
+        setTimeout(function() {
+            location.pathname = "/BulkReddit/" + data.url;
+        }, 3000);
 
+    } else {
+        location.pathname = "/BulkReddit/" + data.url;
+    }
 }
