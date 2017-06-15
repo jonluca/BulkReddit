@@ -112,6 +112,5 @@ function parseData(data, filetype, numberOfPosts, res) {
     } else {
         var doc = new PDFDocument();
     }
-    console.log("got to data");
     pbcopy(data[3]);
 }

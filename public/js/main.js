@@ -51,7 +51,7 @@ function download(fileType) {
     let numberOfPosts = $("#num").val();
     var numericVal = parseInt(numberOfPosts);
 
-    if (numericVall == undefined || numericVal > 100 || isNaN(numericVal)) {
+    if (numericVal == undefined || numericVal > 100 || isNaN(numericVal)) {
         $("#num").val("100");
         numericVal = 100;
     }
@@ -83,5 +83,6 @@ function download(fileType) {
 }
 
 function processFile(data, code, jqXHR) {
-    console.log(data);
+    location.pathname = "/BulkReddit/" + data.url;
+
 }
