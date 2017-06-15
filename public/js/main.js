@@ -22,7 +22,7 @@ $.fn.extend({
 $(document).ready(function() {
     $("#type").change(function() {
         let type = $('#type').find(":selected").text();
-        if (type != "Top" || type != "Controversial") {
+        if (type == "Hot" || type == "New") {
             $('#time').find("select").prop('disabled', true);
             $("#time").css("display", "none");
         } else {
@@ -51,7 +51,7 @@ function download(fileType) {
     let numberOfPosts = $("#num").val();
     var numericVal = parseInt(numberOfPosts);
 
-    if (numericVal > 100 || isNaN(numericVal)) {
+    if (numericVall == undefined || numericVal > 100 || isNaN(numericVal)) {
         $("#num").val("100");
         numericVal = 100;
     }
@@ -59,15 +59,18 @@ function download(fileType) {
         $("#num").val("1");
         numericVal = 1;
     }
+    if (time == undefined) {
+        time = "all";
+    }
     $.ajax({
-        method: 'GET',
+        method: 'POST',
         url: "/BulkReddit/download",
         type: 'json',
         data: {
             subreddit: subreddit,
             time: time,
             type: type,
-            numberOfPosts: numberOfPosts,
+            numberOfPosts: numericVal,
             file: fileType
         },
         success: processFile,
