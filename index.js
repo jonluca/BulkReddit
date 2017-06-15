@@ -149,5 +149,4 @@ function parseData(data, filetype, numberOfPosts, res) {
         res.status(200);
         res.end();
     }
-    pbcopy(data[3]);
 }
