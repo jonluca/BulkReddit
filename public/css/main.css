@@ -129,10 +129,10 @@ body {
 	margin: 0 auto;
 	display: none;
 	
-	border-top: 4px solid #fff;
-	border-right: 4px solid #fff;
-	border-bottom: 4px solid #777;
-	border-left: 4px solid #777;
+	border-top: 4px solid #28A7EC;
+	border-right: 4px solid #28A7EC;
+	border-bottom: 4px solid #FFEA54;
+	border-left: 4px solid #FFEA54;
 	
 	-webkit-animation: loading 1.2s infinite linear;
 	-moz-animation: loading 1.2s infinite linear;
