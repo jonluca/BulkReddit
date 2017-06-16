@@ -75,7 +75,6 @@ function download(fileType) {
         },
         success: processFile,
         error: function(data, code, jqXHR) {
-            //some kind of error
             $("#title").text("Error! Please refresh and try again");
         }
     });

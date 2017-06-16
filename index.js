@@ -72,8 +72,37 @@ app.post(prefix + "/download", function(req, res) {
             });
     }
 });
+function validFile(file) {
+    if (!file[0].endsWith("pdf") && !file[0].endsWith("txt")) {
+        console.log("2");
 
+        return false;
+    }
+    if (file[0].indexOf("..") != -1) {
+        console.log("3");
+
+        return false;
+    }
+    var splitFile = file[0].split('.');
+    if (splitFile.length != 2) {
+        console.log("4");
+
+        return false;
+    }
+    if (isNaN(splitFile[0])) {
+        console.log("5");
+        return false;
+    }
+
+    return true;
+}
 app.get(prefix + "/data/*", function(req, res) {
+    if (!validFile(req.params)) {
+        res.status(300);
+        res.send("Not allowed");
+        return;
+    }
+
     res.download("data/" + req.params[0]); // Set disposition and send it.
 });
 //Function to copy to clipboard - mac
