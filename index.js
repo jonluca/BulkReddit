@@ -113,11 +113,14 @@ function parseData(data, filetype, res) {
                 writeToText(stream, data[i]);
             }
         }
-        res.send({
-            url: "data/" + n + ".txt"
+        stream.on('finish', function() {
+            res.send({
+                url: "data/" + n + ".txt"
+            });
+            res.status(200);
+            res.end();
         });
-        res.status(200);
-        res.end();
+
     } else {
         var mds = "# Reddit offline cache \n \n";
 

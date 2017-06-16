@@ -74,9 +74,7 @@ function download(fileType) {
 }
 
 function processFile(data, code, jqXHR) {
-    setTimeout(function() {
-        location.pathname = "/BulkReddit/" + data.url;
-        $("#loading").css('display', 'none');
-        $("#options").css('display', 'flex');
-    }, 0);
+    location.pathname = "/BulkReddit/" + data.url;
+    $("#loading").css('display', 'none');
+    $("#options").css('display', 'flex');
 }
