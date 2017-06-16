@@ -234,3 +234,4 @@
 127.0.0.1 - - [16/Jun/2017:22:00:31 +0000] "GET /BulkReddit/data/1497650205861.txt HTTP/1.1" 200 318539 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36"
 127.0.0.1 - - [16/Jun/2017:22:00:32 +0000] "GET /BulkReddit/data/1497650205861.txt HTTP/1.1" 200 318539 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36"
 127.0.0.1 - - [16/Jun/2017:22:00:35 +0000] "GET /BulkReddit/ HTTP/1.1" 200 2540 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36"
+127.0.0.1 - - [16/Jun/2017:22:06:03 +0000] "GET /BulkReddit/ HTTP/1.1" 200 2540 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36"
