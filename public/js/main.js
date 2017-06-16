@@ -78,5 +78,5 @@ function processFile(data, code, jqXHR) {
         location.pathname = "/BulkReddit/" + data.url;
         $("#loading").css('display', 'none');
         $("#options").css('display', 'flex');
-    }, 2000);
+    }, 0);
 }

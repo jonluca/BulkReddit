@@ -7,7 +7,7 @@ var request = require('request');
 var api_wrapper = require('./utils/wrapper.js');
 var fs = require('fs');
 var PDFDocument = require('pdfkit');
-var blobstream = require('blob-stream');
+var markdownpdf = require("markdown-pdf");
 
 const prefix = "/BulkReddit";
 app.use(prefix + '/', express.static(path.join(__dirname, 'public')));
@@ -98,11 +98,11 @@ function parseData(data, filetype, res) {
     let d = new Date();
     let n = d.getTime();
     if (filetype == "txt") {
-        var stream = fs.createWriteStream("data/" + n + "-" + numberOfPosts + ".txt");
+        var stream = fs.createWriteStream("data/" + n + ".txt");
         if (data.length == 0) {
             stream.write("Invalid subreddit or no posts to be found!\n");
             res.send({
-                url: "data/" + n + "-" + numberOfPosts + ".txt"
+                url: "data/" + n + ".txt"
             });
             res.status(200);
             res.end();
@@ -114,39 +114,33 @@ function parseData(data, filetype, res) {
             }
         }
         res.send({
-            url: "data/" + n + "-" + numberOfPosts + ".txt"
+            url: "data/" + n + ".txt"
         });
         res.status(200);
         res.end();
     } else {
-        var doc = new PDFDocument();
-        doc.pipe(fs.createWriteStream("data/" + n + "-" + numberOfPosts + ".pdf"));
+        var mds = "# Reddit offline cache \n \n";
 
-        doc.fontSize(25)
-            .text('Reddit offline cache', 100, 80).moveDown();
-
-        doc.addPage();
         if (data.length == 0) {
-            doc.fontSize(25)
-                .text('Invalid subreddit or no posts to be found!', 100, 80);
+            mds += '# Invalid subreddit or no posts to be found!\n\n';
         }
         for (var i = 0; i < data.length; i++) {
             if (data[i].is_self && data[i].distinguished == undefined && !data[i].stickied) {
-                doc.fontSize(25)
-                    .text(data[i].title + " - " + "/u/" + String(data[i].author.name) + "\n", 100, 80).moveDown();
-                doc.font('Times-Roman', 13).text("https://reddit.com" + data[i].permalink + "\n").moveDown();
-                doc.font('Times-Roman', 13).text("----------------------------------------\n\n").moveDown();
-                doc.font('Times-Roman', 10).text(data[i].selftext + "\n").moveDown();
-                doc.font('Times-Roman', 13).text("\n\n\n").moveDown();
-                doc.addPage();
+                mds += "## " + data[i].title + " - " + "/u/" + String(data[i].author.name) + "\n\n";
+                mds += "### " + "https://reddit.com" + data[i].permalink + "\n \n";
+                mds += "# " + "-------------------------------------\n\n";
+                mds += data[i].selftext + "\n\n\n";
             }
 
         }
-        doc.end();
-        res.send({
-            url: "data/" + n + "-" + numberOfPosts + ".pdf"
+        markdownpdf().from.string(mds).to("data/" + n + ".pdf", function() {
+            res.send({
+                url: "data/" + n + ".pdf"
+            });
+            res.status(200);
+            res.end();
         });
-        res.status(200);
-        res.end();
+
+
     }
 }
