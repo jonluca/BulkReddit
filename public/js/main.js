@@ -50,17 +50,7 @@ function download(fileType) {
     let subreddit = $("#subreddit").val();
     let time = $('#time').find(":selected").text();
     let type = $('#type').find(":selected").text();
-    let numberOfPosts = $("#num").val();
-    var numericVal = parseInt(numberOfPosts);
 
-    if (numericVal == undefined || numericVal > 100 || isNaN(numericVal)) {
-        $("#num").val("100");
-        numericVal = 100;
-    }
-    if (numericVal < 1) {
-        $("#num").val("1");
-        numericVal = 1;
-    }
     if (time == undefined) {
         time = "all";
     }
@@ -72,7 +62,6 @@ function download(fileType) {
             subreddit: subreddit,
             time: time,
             type: type,
-            numberOfPosts: numericVal,
             file: fileType
         },
         success: processFile,
