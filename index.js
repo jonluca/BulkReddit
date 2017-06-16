@@ -94,25 +94,31 @@ function writeToText(stream, data) {
     stream.write("\n\n\n");
 }
 
+function writeToMarkdown(mds, data) {
+    mds += "## " + data.title + " - " + "/u/" + String(data.author.name) + "\n\n";
+    mds += "### " + "https://reddit.com" + data.permalink + "\n \n";
+    mds += "# " + "-------------------------------------\n\n";
+    mds += data.selftext + "\n\n\n";
+}
+
 function parseData(data, filetype, res) {
     let d = new Date();
     let n = d.getTime();
+    var amountAdded = 0;
     if (filetype == "txt") {
         var stream = fs.createWriteStream("data/" + n + ".txt");
-        if (data.length == 0) {
-            stream.write("Invalid subreddit or no posts to be found!\n");
-            res.send({
-                url: "data/" + n + ".txt"
-            });
-            res.status(200);
-            res.end();
-            return;
-        }
         for (var i = 0; i < data.length; i++) {
             if (data[i].is_self && data[i].distinguished == undefined) {
                 writeToText(stream, data[i]);
+                if (++amountAdded >= 100) {
+                    break;
+                }
             }
         }
+        if (data.length == 0 || amountAdded == 0) {
+            stream.write("Invalid subreddit or no self-posts to be found!\n");
+        }
+        stream.end();
         stream.on('finish', function() {
             res.send({
                 url: "data/" + n + ".txt"
@@ -122,19 +128,19 @@ function parseData(data, filetype, res) {
         });
 
     } else {
+
         var mds = "# Reddit offline cache \n \n";
 
-        if (data.length == 0) {
-            mds += '# Invalid subreddit or no posts to be found!\n\n';
-        }
         for (var i = 0; i < data.length; i++) {
             if (data[i].is_self && data[i].distinguished == undefined && !data[i].stickied) {
-                mds += "## " + data[i].title + " - " + "/u/" + String(data[i].author.name) + "\n\n";
-                mds += "### " + "https://reddit.com" + data[i].permalink + "\n \n";
-                mds += "# " + "-------------------------------------\n\n";
-                mds += data[i].selftext + "\n\n\n";
+                writeToMarkdown(mds, data[i]);
+                if (++amountAdded >= 100) {
+                    break;
+                }
             }
-
+        }
+        if (data.length == 0 || amountAdded == 0) {
+            mds += '# Invalid subreddit or no self-posts to be found!\n\n';
         }
         markdownpdf().from.string(mds).to("data/" + n + ".pdf", function() {
             res.send({
@@ -143,7 +149,6 @@ function parseData(data, filetype, res) {
             res.status(200);
             res.end();
         });
-
 
     }
 }
