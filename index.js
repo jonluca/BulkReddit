@@ -72,25 +72,24 @@ app.post(prefix + "/download", function(req, res) {
             });
     }
 });
+
+//All valid files with match the signature "milliseconds[0-9].filename"
 function validFile(file) {
+    //If they request a file other than pdf or txt
     if (!file[0].endsWith("pdf") && !file[0].endsWith("txt")) {
-        console.log("2");
-
         return false;
     }
+    //If they try to do directory manipulation
     if (file[0].indexOf("..") != -1) {
-        console.log("3");
-
         return false;
     }
+    //Make sure there aren't multiple periods
     var splitFile = file[0].split('.');
     if (splitFile.length != 2) {
-        console.log("4");
-
         return false;
     }
+    //Make sure first part is all numbers
     if (isNaN(splitFile[0])) {
-        console.log("5");
         return false;
     }
 
@@ -105,11 +104,6 @@ app.get(prefix + "/data/*", function(req, res) {
 
     res.download("data/" + req.params[0]); // Set disposition and send it.
 });
-//Function to copy to clipboard - mac
-function pbcopy(data) {
-    var proc = require('child_process').spawn('pbcopy');
-    proc.stdin.write(JSON.stringify(data)); proc.stdin.end();
-}
 
 function validTime(time) {
     return (["hour", "day", "week", "month", "year", "all"]).includes(time);
