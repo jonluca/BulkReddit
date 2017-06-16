@@ -45,6 +45,7 @@ $(document).ready(function() {
 
 
 function download(fileType) {
+    $("#title").text("Reddit Offline Cache");
     $("#loading").css('display', 'block');
     $("#options").css('display', 'none');
     let subreddit = $("#subreddit").val();
@@ -54,6 +55,14 @@ function download(fileType) {
     if (time == undefined) {
         time = "all";
     }
+    if (subreddit == undefined || subreddit == "") {
+        subreddit = "TalesFromTechSupport";
+    }
+    if (type == undefined || type == "") {
+        type = "Hot";
+    }
+    subreddit = subreddit.trim();
+
     $.ajax({
         method: 'POST',
         url: "/BulkReddit/download",
@@ -67,6 +76,7 @@ function download(fileType) {
         success: processFile,
         error: function(data, code, jqXHR) {
             //some kind of error
+            $("#title").text("Error! Please refresh and try again");
         }
     });
 
