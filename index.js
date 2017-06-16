@@ -32,6 +32,7 @@ app.post(prefix + "/download", function(req, res) {
     let type = req.body.type;
     let file = req.body.file;
     let subreddit = req.body.subreddit;
+    let comments = req.body.comments;
 
     //Validity check for time
     if (!validTime(lowerTime)) {
@@ -41,26 +42,26 @@ app.post(prefix + "/download", function(req, res) {
     switch (type) {
         case "Hot":
             r.getSubreddit(subreddit).getHot().then(function(data) {
-                parseData(data, file, res);
+                parseData(data, file, res, comments);
             });
             break;
         case "Top":
             r.getSubreddit(subreddit).getTop({
                 time: lowerTime
             }).then(function(data) {
-                parseData(data, file, res);
+                parseData(data, file, res, comments);
             });
             break;
         case "New":
             r.getSubreddit(subreddit).getNew().then(function(data) {
-                parseData(data, file, res);
+                parseData(data, file, res, comments);
             });
             break;
         case "Controversial":
             r.getSubreddit(subreddit).getControversial({
                 time: lowerTime
             }).then(function(data) {
-                parseData(data, file, res);
+                parseData(data, file, res, comments);
             });
             break;
         default:
@@ -68,7 +69,7 @@ app.post(prefix + "/download", function(req, res) {
             r.getSubreddit(subreddit).getTop({
                 time: 'all'
             }).then(function(data) {
-                parseData(data, file, res);
+                parseData(data, file, res, comments);
             });
     }
 });
@@ -124,7 +125,7 @@ function writeToMarkdown(mds, data) {
     mds += data.selftext + "\n\n\n";
 }
 
-function parseData(data, filetype, res) {
+function parseData(data, filetype, res, comments) {
     let d = new Date();
     let n = d.getTime();
     var amountAdded = 0;

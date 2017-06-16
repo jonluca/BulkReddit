@@ -51,6 +51,7 @@ function download(fileType) {
     let subreddit = $("#subreddit").val();
     let time = $('#time').find(":selected").text();
     let type = $('#type').find(":selected").text();
+    let comments = document.getElementById('comment').checked;
 
     if (time == undefined) {
         time = "all";
@@ -71,7 +72,8 @@ function download(fileType) {
             subreddit: subreddit,
             time: time,
             type: type,
-            file: fileType
+            file: fileType,
+            comments: comments
         },
         success: processFile,
         error: function(data, code, jqXHR) {

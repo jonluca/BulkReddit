@@ -20,12 +20,10 @@ body {
 }
 #time {
 	display: none;
-	flex-grow: 0 !important;
 	margin: 0 auto;
 }
 #type {
-	flex-grow: 0 !important;
-		margin: 0 auto;
+	margin: 0 auto;
 }
 .modal-content {
 	display: none;
@@ -61,6 +59,10 @@ body {
 }
 .dropdown {
 	padding-top: 5%;
+}
+.check {
+	padding-top: 10px;
+	color: #FFEA54;
 }
 
 /*About sidenav*/
