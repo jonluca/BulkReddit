@@ -2,7 +2,7 @@ var helmet = require('helmet');
 var bodyParser = require("body-parser");
 var fs = require('fs');
 var path = require('path');
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {
+var accessLogStream = fs.createWriteStream(path.join(__dirname, '../access.log'), {
     flags: 'a'
 });
 
