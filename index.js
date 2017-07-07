@@ -38,7 +38,6 @@ app.post(prefix + "/download", function(req, res) {
     if (!validTime(lowerTime)) {
         lowerTime = "all";
     }
-    console.log(req.body);
 
     switch (type) {
         case "Hot":
@@ -127,7 +126,6 @@ function writeToMarkdown(mds, data) {
 }
 
 function parseData(data, filetype, res, comments) {
-    console.log(data);
     let d = new Date();
     let n = d.getTime();
     var amountAdded = 0;
@@ -168,6 +166,7 @@ function parseData(data, filetype, res, comments) {
         if (data.length == 0 || amountAdded == 0) {
             mds += '# Invalid subreddit or no self-posts to be found!\n\n';
         }
+        console.log(mds);
         markdownpdf().from.string(mds).to("data/" + n + ".pdf", function() {
             res.send({
                 url: "data/" + n + ".pdf"
