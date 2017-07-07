@@ -127,6 +127,7 @@ function writeToMarkdown(mds, data) {
 }
 
 function parseData(data, filetype, res, comments) {
+    console.log(data);
     let d = new Date();
     let n = d.getTime();
     var amountAdded = 0;
