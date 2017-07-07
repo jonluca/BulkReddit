@@ -38,6 +38,7 @@ app.post(prefix + "/download", function(req, res) {
     if (!validTime(lowerTime)) {
         lowerTime = "all";
     }
+    console.log(req.body);
 
     switch (type) {
         case "Hot":
