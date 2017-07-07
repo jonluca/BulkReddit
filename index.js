@@ -118,11 +118,12 @@ function writeToText(stream, data) {
     stream.write("\n\n\n");
 }
 
-function writeToMarkdown(mds, data) {
-    mds += "## " + data.title + " - " + "/u/" + String(data.author.name) + "\n\n";
-    mds += "### " + "https://reddit.com" + data.permalink + "\n \n";
-    mds += "# " + "-------------------------------------\n\n";
-    mds += data.selftext + "\n\n\n";
+function writeToMarkdown(origText, data) {
+    origText += "## " + data.title + " - " + "/u/" + String(data.author.name) + "\n\n";
+    origText += "### " + "https://reddit.com" + data.permalink + "\n \n";
+    origText += "# " + "-------------------------------------\n\n";
+    origText += data.selftext + "\n\n\n";
+    return origText;
 }
 
 function parseData(data, filetype, res, comments) {
@@ -157,7 +158,7 @@ function parseData(data, filetype, res, comments) {
 
         for (var i = 0; i < data.length; i++) {
             if (data[i].is_self && data[i].distinguished == undefined && !data[i].stickied) {
-                writeToMarkdown(mds, data[i]);
+                mds = writeToMarkdown(mds, data[i]);
                 if (++amountAdded >= 100) {
                     break;
                 }
@@ -166,7 +167,6 @@ function parseData(data, filetype, res, comments) {
         if (data.length == 0 || amountAdded == 0) {
             mds += '# Invalid subreddit or no self-posts to be found!\n\n';
         }
-        console.log(mds);
         markdownpdf().from.string(mds).to("data/" + n + ".pdf", function() {
             res.send({
                 url: "data/" + n + ".pdf"
