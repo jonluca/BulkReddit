@@ -9,8 +9,7 @@ var fs = require('fs');
 var PDFDocument = require('pdfkit');
 var markdownpdf = require("markdown-pdf");
 
-const prefix = "/BulkReddit";
-app.use(prefix + '/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 const r = new snoowrap({
     userAgent: 'BulkReddit/1.0',
@@ -20,13 +19,13 @@ const r = new snoowrap({
 });
 api_wrapper(app);
 
-app.get(prefix + "/", function(req, res) {
+app.get("/", function(req, res) {
     res.status(200);
     res.render("index.ejs");
 });
 
 
-app.post(prefix + "/download", function(req, res) {
+app.post("/download", function(req, res) {
     let time = req.body.time;
     var lowerTime = time.toLowerCase();
     let type = req.body.type;
@@ -96,7 +95,7 @@ function validFile(file) {
 
     return true;
 }
-app.get(prefix + "/data/*", function(req, res) {
+app.get("/data/*", function(req, res) {
     if (!validFile(req.params)) {
         res.status(300);
         res.send("Not allowed");
