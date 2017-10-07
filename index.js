@@ -8,7 +8,9 @@ var api_wrapper = require('./utils/wrapper.js');
 var fs = require('fs');
 var PDFDocument = require('pdfkit');
 var markdownpdf = require("markdown-pdf");
+var helmet = require('helmet');
 
+app.use(helmet());
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 const r = new snoowrap({

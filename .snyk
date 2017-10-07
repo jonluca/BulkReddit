@@ -1,0 +1,27 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:concat-stream:20160901':
+    - extract-zip > concat-stream:
+        reason: None given
+        expires: '2017-11-06T19:03:49.924Z'
+    - phantomjs-prebuilt > extract-zip > concat-stream:
+        reason: None given
+        expires: '2017-11-06T19:03:49.924Z'
+  'npm:debug:20170905':
+    - extract-zip > debug:
+        reason: None given
+        expires: '2017-11-06T19:03:49.924Z'
+    - phantomjs-prebuilt > extract-zip > debug:
+        reason: None given
+        expires: '2017-11-06T19:03:49.924Z'
+  'npm:tunnel-agent:20170305':
+    - phantomjs-prebuilt > request > tunnel-agent:
+        reason: None given
+        expires: '2017-11-06T19:03:49.924Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:tough-cookie:20170905':
+    - phantomjs-prebuilt > request > tough-cookie:
+        patched: '2017-10-07T19:02:19.701Z'
