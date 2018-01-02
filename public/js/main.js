@@ -66,7 +66,7 @@ function download(fileType) {
 
     $.ajax({
         method: 'POST',
-        url: "/BulkReddit/download",
+        url: "download",
         type: 'json',
         data: {
             subreddit: subreddit,
