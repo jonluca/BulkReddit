@@ -8,7 +8,6 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, '../access.log
 const morgan = require('morgan');
 
 module.exports = function (app) {
-  app.use(helmet());
   //Apache-like logs
   app.set('trust proxy', true);
   app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"', {

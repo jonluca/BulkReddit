@@ -30,7 +30,11 @@
       </file>
       <file leaf-file-name="wrapper.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/wrapper.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -237,12 +241,12 @@
       <workItem from="1499455716032" duration="712000" />
       <workItem from="1507403851022" duration="268000" />
       <workItem from="1521740440571" duration="938000" />
-      <workItem from="1521741510541" duration="789000" />
+      <workItem from="1521741510541" duration="867000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2707000" />
+    <option name="totallyTimeSpent" value="2785000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -436,7 +440,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/wrapper.js">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
