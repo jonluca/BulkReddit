@@ -161,7 +161,7 @@ function parseData(data, filetype, res, comments) {
     let mds = "# Reddit offline cache \n \n";
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].is_self && data[i].distinguished === undefined && !data[i].stickied) {
+      if (data[i].is_self && !data[i].distinguished) {
         mds = writeToMarkdown(mds, data[i]);
         if (++amountAdded >= 100) {
           break;
