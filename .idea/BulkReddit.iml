@@ -8,5 +8,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/chrome" level="application" />
+    <orderEntry type="library" name="@types/mongodb" level="application" />
+    <orderEntry type="library" name="@types/mongoose" level="application" />
+    <orderEntry type="library" name="chrome-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="express-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="express-rate-limit-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="jquery-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="js-base64-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="moment-range-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="passport-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="@types/express" level="application" />
+    <orderEntry type="library" name="@types/express-serve-static-core" level="application" />
   </component>
 </module>
