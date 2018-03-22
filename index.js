@@ -137,7 +137,7 @@ function parseData(data, filetype, res, comments) {
   if (filetype === "txt") {
     const stream = fs.createWriteStream("data/" + n + ".txt");
     for (let j = 0; j < data.length; j++) {
-      if (data[j].is_self && data[j].distinguished === undefined) {
+      if (data[j].is_self && !data[j].distinguished) {
         writeToText(stream, data[j]);
         if (++amountAdded >= 100) {
           break;
