@@ -9,7 +9,7 @@ const fs = require('fs');
 const markdownpdf = require("markdown-pdf");
 const helmet = require('helmet');
 
-app.use(helmet());
+app.use(helmet({xssFilter: false}));
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 const r = new snoowrap({
