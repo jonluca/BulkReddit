@@ -26,7 +26,7 @@
     "markdown-pdf": "^9.0.0",
     "morgan": "^1.9.1",
     "path": "^0.12.7",
-    "pdfkit": "^0.8.3",
+    "pdfkit": "^0.9.0",
     "reddit.js": "^0.1.4",
     "request": "^2.88.0",
     "save": "^2.3.3",
